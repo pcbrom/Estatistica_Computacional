@@ -452,6 +452,29 @@ require(lattice)
 # Resultados gráficos
 # POR tempo
 
+png(filename = "tempo_metodo_linhas.png", width = 1200, height = 700, res = 150)
+p = xyplot(resultados[, 2] ~ resultados[, 7], 
+           group = resultados[, 5], 
+           type = "l",
+           data = resultados,
+           main = list('Quadro comparativo de tempo médio de simulação', cex = 1.5),
+           ylab = 'Tempo de execução em segundos', 
+           xlab = 'Tamanho do vetor',
+           auto.key = list(title = 'Método de\nordenação', corner = c(.05, 1), cex = .8), 
+           pch = 22,
+           par.settings = list(superpose.symbol = list(pch = 22)))
+p
+trellis.unfocus()
+trellis.focus("panel",1,1)
+panel.text(x = p$panel.args[[1]]$x, 
+           y = p$panel.args[[1]]$y, 
+           labels = list(round(resultados[, 2], 2))[[1]], 
+           pos = 3, 
+           cex = 0.7, 
+           col = "grey1")
+trellis.unfocus()
+dev.off()
+
 png(filename = "tempo_metodo.png", width = 1200, height = 800, res = 120)
 p = xyplot(resultados[, 2] ~ 1:nrow(resultados), 
        group = resultados[, 5], 
@@ -498,6 +521,30 @@ trellis.unfocus()
 dev.off()
 
 # POR quantidade de comparações
+
+png(filename = "comparacoes_metodo_linhas.png", width = 1200, height = 700, res = 150)
+p = xyplot(resultados[, 3] ~ resultados[, 7], 
+           group = resultados[, 5], 
+           type = "l",
+           data = resultados,
+           main = list('Quadro comparativo de número de comparações média', cex = 1.5),
+           ylab = 'Número médio de comparações', 
+           xlab = 'Tamanho do vetor',
+           #ylim = c(-5000, 70000),
+           auto.key = list(title = 'Método de\nordenação', corner = c(.05, 1), cex = .8), 
+           pch = 22,
+           par.settings = list(superpose.symbol = list(pch = 22)))
+p
+trellis.unfocus()
+trellis.focus("panel",1,1)
+panel.text(x = p$panel.args[[1]]$x, 
+           y = p$panel.args[[1]]$y, 
+           labels = list(resultados[, 3])[[1]], 
+           pos = 3, 
+           cex = 0.7, 
+           col = "grey1")
+trellis.unfocus()
+dev.off()
 
 png(filename = "comparacoes_metodo.png", width = 1200, height = 800, res = 120)
 p = xyplot(resultados[, 3] ~ 1:nrow(resultados), 
@@ -594,6 +641,30 @@ trellis.unfocus()
 dev.off()
 
 # POR quantidade de movimentos
+
+png(filename = "movimentos_metodo_linhas.png", width = 1200, height = 700, res = 150)
+p = xyplot(resultados[, 4] ~ resultados[, 7], 
+           group = resultados[, 5], 
+           type = "l",
+           data = resultados,
+           main = list('Quadro comparativo de número médio de movimentos', cex = 1.5),
+           ylab = 'Número médio de movimentos', 
+           xlab = 'Tamanho do vetor',
+           #ylim = c(-5000, 70000),
+           auto.key = list(title = 'Método de\nordenação', corner = c(.05, 1), cex = .8), 
+           pch = 22,
+           par.settings = list(superpose.symbol = list(pch = 22)))
+p
+trellis.unfocus()
+trellis.focus("panel",1,1)
+panel.text(x = p$panel.args[[1]]$x, 
+           y = p$panel.args[[1]]$y, 
+           labels = list(resultados[, 4])[[1]], 
+           pos = 3, 
+           cex = 0.7, 
+           col = "grey1")
+trellis.unfocus()
+dev.off()
 
 png(filename = "movimentos_metodo.png", width = 1200, height = 800, res = 120)
 p = xyplot(resultados[, 4] ~ 1:nrow(resultados), 
